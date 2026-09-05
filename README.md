@@ -13,3 +13,6 @@ source env/bin/activate
 pip install -r requirements.txt
 
 app.py
+
+python3 -m venv env  
+ .\env\Scripts\activate 
