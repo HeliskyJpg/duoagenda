@@ -2,7 +2,13 @@ cd proyecto
 
 python3 -m venv env 
 
+## linux 
 source env/bin/activate
+
+
+## windows
+.\venv\Scripts\activate
+
 
 pip install -r requirements.txt
 
