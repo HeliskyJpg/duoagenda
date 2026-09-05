@@ -9,9 +9,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def inicio():
-    return 'hola'
+    return 'index.html'
 
-# modulo de clientes
 
 
 if __name__ == "__main__":
