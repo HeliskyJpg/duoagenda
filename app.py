@@ -7,6 +7,8 @@ USUARIOS = {
 
 app = Flask(__name__)
 
+from .models import Colaborador
+
 @app.route("/")
 def inicio():
     return render_template('index.html')
@@ -20,7 +22,19 @@ def inicio():
 @app.route("/registro", methods=["GET", "POST"])
 def registro_colaborador():
     if request.method =="POST" :
-        pass
+        # Nombre	text	requerido
+        # Apellido	text	requerido
+        # Fecha de nacimiento	date	requerido
+        # Día de la semana que labora
+        nombre = request.form.nombre
+        apellido = request.form.apellido
+        fecha_nacimiento = request.form.fecha_nacimiento
+        dia_laboral = request.form.dia_laboral
+        
+        c = Colaborador(nombre, apellido,fecha_nacimiento,dia_laboral)
+        
+        c.save()
+
     else:
         return render_template('registro_agenda.html')
     

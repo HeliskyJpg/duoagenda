@@ -1,0 +1,26 @@
+[
+    {
+        "nombre": "Elena",
+        "apellido": "Sandoval",
+        "fecha_nacimiento": "2002/03/04",
+        "dia_laboral": "02"
+    },
+    {
+        "nombre": "Elena",
+        "apellido": "Sandoval",
+        "fecha_nacimiento": "2002/03/04",
+        "dia_laboral": "02"
+    },
+    {
+        "nombre": "Hely",
+        "apellido": "Mendez",
+        "fecha_nacimiento": "2000/06/06",
+        "dia_laboral": "05"
+    },
+    {
+        "nombre": "Hely",
+        "apellido": "Mendez",
+        "fecha_nacimiento": "2000/06/06",
+        "dia_laboral": "05"
+    }
+]
