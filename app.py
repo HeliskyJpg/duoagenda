@@ -2,12 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-from .models import Colaborador
+
+from models.Colaborador import Colaborador
 
 @app.route("/")
 def inicio():
     return render_template('index.html')
-
 
 
 @app.route("/registro", methods=["GET", "POST"])
@@ -35,7 +35,14 @@ def registro_colaborador():
 @app.route('/colaboradores')
 def listado_clientes():
     data = Colaborador.all()
-    return render_template('colaboradores.html', data=data)
+    return data
+    # return render_template('colaboradores.html', data=data)
+
+@app.route('/resumen')
+def listado_resumen():
+    data = Colaborador.get_resumen()
+    return data
+    # return render_template('resumen.html', data=data)    
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)

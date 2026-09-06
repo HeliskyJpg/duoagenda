@@ -3,24 +3,24 @@
         "nombre": "Elena",
         "apellido": "Sandoval",
         "fecha_nacimiento": "2002/03/04",
-        "dia_laboral": "02"
+        "dia_laboral": "0"
     },
     {
         "nombre": "Elena",
         "apellido": "Sandoval",
         "fecha_nacimiento": "2002/03/04",
-        "dia_laboral": "02"
+        "dia_laboral": "7"
     },
     {
         "nombre": "Hely",
         "apellido": "Mendez",
         "fecha_nacimiento": "2000/06/06",
-        "dia_laboral": "05"
+        "dia_laboral": "5"
     },
     {
         "nombre": "Hely",
         "apellido": "Mendez",
         "fecha_nacimiento": "2000/06/06",
-        "dia_laboral": "05"
+        "dia_laboral": "4"
     }
 ]

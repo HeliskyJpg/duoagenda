@@ -1,5 +1,16 @@
 import json
 from datetime import datetime
+from collections import Counter
+
+DIAS_SEMANA = [
+    (0, "LUNES"),
+    (1, "MARTES"),
+    (2, "MIÉRCOLES"),
+    (3, "JUEVES"),
+    (4, "VIERNES"),
+    (5, "SÁBADO"),
+    (6, "DOMINGO"),
+]
 
 
 class Colaborador:
@@ -30,29 +41,46 @@ class Colaborador:
             json.dump(datos, f, ensure_ascii=False, indent=4)
 
     @classmethod
-    def calcular_edad(cls,fecha_nacimiento):
+    def calcular_edad(cls, fecha_nacimiento):
         fecha_nacimiento = datetime.strptime(fecha_nacimiento, "%Y/%m/%d")
 
         hoy = datetime.now()
 
         edad = hoy.year - fecha_nacimiento.year
-
         return edad
 
-    # resumen_por_dia
     @classmethod
     def all(self):
         data = Colaborador.cargar_colaboradores()
         # print(data)
-        
+
         for n in data:
             # print(n)
             edad = Colaborador.calcular_edad(n["fecha_nacimiento"])
             # print(edad)
             n.update(edad=edad)
             # print(n)
-        return data  
-      
+        return data
+
+    @classmethod
+    def get_resumen(cls):
+        data = Colaborador.cargar_colaboradores()
+        conteo = Counter()
+
+        for item in data:
+            conteo[item["dia_laboral"]] += 1
+
+        # print(conteo)
+
+        resultado = {}
+
+        for numero, nombre in DIAS_SEMANA:
+            numero_texto = str(numero)
+            resultado[nombre] = conteo[numero_texto]
+
+        # print(resultado)
+        return resultado
+
     def save(self):
 
         specific_colab = {"nombre": self.nombre, "apellido": self.apellido,
