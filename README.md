@@ -16,3 +16,7 @@ app.py
 
 python3 -m venv env  
  .\env\Scripts\activate 
+
+ git add . 
+ git commit -m ""
+ git push origin main 
