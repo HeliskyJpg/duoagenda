@@ -41,15 +41,13 @@ def registro_colaborador():
 @app.route('/colaboradores')
 def listado_clientes():
     data = Colaborador.all()
-    return data
-    # return render_template('colaboradores.html', data=data)
+    return render_template('colaboradores.html', data=data)
 
 
 @app.route('/resumen')
 def listado_resumen():
     data = Colaborador.get_resumen()
-    return data
-    # return render_template('resumen.html', data=data)
+    return render_template('resumen.html', data=data)
 
 
 if __name__ == "__main__":
