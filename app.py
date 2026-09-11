@@ -1,9 +1,9 @@
+from models.Colaborador import Colaborador
 from flask import Flask, render_template, request, redirect, url_for
+from models.forms import RegistrationForm
 
 app = Flask(__name__)
 
-
-from models.Colaborador import Colaborador
 
 @app.route("/")
 def inicio():
@@ -12,25 +12,31 @@ def inicio():
 
 @app.route("/registro", methods=["GET", "POST"])
 def registro_colaborador():
-    if request.method =="POST" :
-        # Nombre	text	requerido
-        # Apellido	text	requerido
-        # Fecha de nacimiento	date	requerido
-        # Día de la semana que labora
-        nombre = request.form.nombre
-        apellido = request.form.apellido
-        fecha_nacimiento = request.form.fecha_nacimiento
-        dia_laboral = request.form.dia_laboral
-        
-        c = Colaborador(nombre, apellido,fecha_nacimiento,dia_laboral)
-        
-        c.save()
-        
-        return redirect(url_for('listado_clientes'))
-
-    else:
-        return render_template('registro_agenda.html')
+    form = RegistrationForm(request.form)
     
+    if request.method == "POST":
+        if form.validate():
+            # Nombre	text	requerido
+            # Apellido	text	requerido
+            # Fecha de nacimiento	date	requerido
+            # Día de la semana que labora
+            
+            nombre = form.nombre.data
+            apellido = form.apellido.data
+            fecha_nacimiento = form.fecha_nacimiento.data
+            dia_laboral = form.dia.data
+            fecha_str = form.fecha_nacimiento.data.strftime('%Y-%m-%d')
+            c = Colaborador(nombre, apellido, fecha_str, dia_laboral)
+
+            c.save()
+
+            return redirect(url_for('listado_clientes'))
+        
+        print(form.errors)
+  
+    return render_template('registro_agenda.html', form=form)
+    
+
 
 @app.route('/colaboradores')
 def listado_clientes():
@@ -38,11 +44,13 @@ def listado_clientes():
     return data
     # return render_template('colaboradores.html', data=data)
 
+
 @app.route('/resumen')
 def listado_resumen():
     data = Colaborador.get_resumen()
     return data
-    # return render_template('resumen.html', data=data)    
+    # return render_template('resumen.html', data=data)
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)

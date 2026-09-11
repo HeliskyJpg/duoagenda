@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from datetime import date
 from collections import Counter
 
 DIAS_SEMANA = [
@@ -40,14 +41,24 @@ class Colaborador:
         with open(ruta_archivo, 'w', encoding='utf-8') as f:
             json.dump(datos, f, ensure_ascii=False, indent=4)
 
+
     @classmethod
     def calcular_edad(cls, fecha_nacimiento):
-        fecha_nacimiento = datetime.strptime(fecha_nacimiento, "%Y/%m/%d")
+        # print(type(fecha_nacimiento))
+        print('============================================================')
+        
+        fecha_dt = datetime.strptime(fecha_nacimiento, "%Y-%m-%d")
 
+        #hoy
         hoy = datetime.now()
-
-        edad = hoy.year - fecha_nacimiento.year
+        # print('hoy', hoy)
+        
+        #Calcula edad
+        edad = hoy.year - fecha_dt.year
+        # print('edad===============', edad)
+        
         return edad
+
 
     @classmethod
     def all(self):
@@ -75,8 +86,8 @@ class Colaborador:
         resultado = {}
 
         for numero, nombre in DIAS_SEMANA:
-            numero_texto = str(numero)
-            resultado[nombre] = conteo[numero_texto]
+            # numero_texto = str(numero)
+            resultado[nombre] = conteo[numero]
 
         # print(resultado)
         return resultado
